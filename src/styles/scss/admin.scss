@@ -1,0 +1,63 @@
+@import "variables";
+
+.admin-options {
+  background: $main-color;
+  height: 100%;
+  color: #fff;
+}
+.dropdown {
+  margin: 8px 0px;
+
+  .dropdown-toggle {
+    display: block;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  .dropdown-menu.show {
+    width: 100%;
+  }
+  .primary-btn,
+  .primary-btn:not(:disabled) {
+    margin: 0;
+  }
+  .btn-primary:not(:disabled):not(.disabled).active,
+  .btn-primary:not(:disabled):not(.disabled):active,
+  &.show > .btn-primary.dropdown-toggle {
+    background: $main-color-dark;
+    box-shadow: none !important;
+    border: none !important;
+  }
+}
+.sidebar-row {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  li {
+    list-style: none;
+    font-size: 16px;
+    padding: 8px;
+    &:hover {
+      cursor: pointer;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+  }
+}
+@media(max-width: 767px)
+{
+    .sidebar-row {
+        position: relative;
+        margin: auto;
+        width: calc(100% + 30px);
+        margin-left: -15px;
+    }
+}
+.form-area{
+    h2{
+        margin: 16px 0
+    }
+}

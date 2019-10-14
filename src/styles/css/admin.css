@@ -1,0 +1,49 @@
+.admin-options {
+  background: #e60707e7;
+  height: 100%;
+  color: #fff; }
+
+.dropdown {
+  margin: 8px 0px; }
+  .dropdown .dropdown-toggle {
+    display: block;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex; }
+  .dropdown .dropdown-menu.show {
+    width: 100%; }
+  .dropdown .primary-btn,
+  .dropdown .primary-btn:not(:disabled) {
+    margin: 0; }
+  .dropdown .btn-primary:not(:disabled):not(.disabled).active,
+  .dropdown .btn-primary:not(:disabled):not(.disabled):active,
+  .dropdown.show > .btn-primary.dropdown-toggle {
+    background: #a80f0f;
+    box-shadow: none !important;
+    border: none !important; }
+
+.sidebar-row {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%; }
+  .sidebar-row li {
+    list-style: none;
+    font-size: 16px;
+    padding: 8px; }
+    .sidebar-row li:hover {
+      cursor: pointer;
+      text-decoration: underline;
+      font-weight: bold; }
+
+@media (max-width: 767px) {
+  .sidebar-row {
+    position: relative;
+    margin: auto;
+    width: calc(100% + 30px);
+    margin-left: -15px; } }
+
+.form-area h2 {
+  margin: 16px 0; }

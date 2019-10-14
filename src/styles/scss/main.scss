@@ -1,0 +1,179 @@
+@import "variables" ;
+@import './popups.scss';
+@import './admin.scss';
+
+html,
+body {
+  height: 100%;
+}
+body {
+  background: $light-grey;
+}
+img {
+  display: block;
+  max-width: 100%;
+  border-radius: 4px;
+}
+.no-margin{
+  margin: 0px!important
+}
+.primary-btn, .primary-btn:not(:disabled), 
+.secondary-btn, .secondary-btn:not(:disabled) {
+  font-weight: bold;
+  border: 1px solid transparent;
+  padding: 4px 16px;
+  border-radius: 4px;
+  margin: 0px 8px;
+  &:hover, &:focus {
+    color: #fff;
+    background: $main-color-dark;
+    outline: none;
+    text-decoration: none;
+    box-shadow: none
+  }
+}
+.primary-btn {
+  color: #fff;
+  background: $main-color;
+}
+.secondary-btn {
+  color: $main-color;
+  background: #fff;
+  border: 1px solid $main-color;
+  &:hover, &:focus {
+    border: 1px solid $main-color-dark;
+  }
+}
+.main-container {
+  min-height: 70vh;
+  background: #fff;
+  position: relative;
+  box-shadow: 2px 4px 5px #ccc;
+  margin-bottom: 16px;
+}
+
+header,
+footer {
+  background: $main-color;
+  box-shadow: 4px 3px 8px $light-grey;
+  display: flex;
+  color: #fff;
+}
+header {
+  justify-content: flex-end;
+  padding: 4px 8px;
+}
+footer {
+  padding: 8px;
+  font-size: 14px;
+  .footer-content {
+    text-align: center;
+  }
+}
+
+#banner {
+  background-image: url("https://councilbluffs.ameristar.com/globalassets/acb/play/acb_secondary_header_5_1800x675.jpg");
+  height: 300px;
+  width: 100%;
+  background-size: cover;
+  background-position-y: 465px;
+
+  .container {
+    span {
+      margin-top: 8px;
+      background: $main-color;
+      color: #fff;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 45px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue";
+    }
+    display: inline;
+    display: flex;
+  }
+}
+
+@media(max-width: 1240px){
+  #banner {
+    background-position-y: unset
+  }
+}
+.title {
+  border-bottom: 8px solid $main-color;
+  text-align: center;
+  padding: 10px 0px;
+  font-size: 30px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.game-section {
+  padding: 16px;
+}
+@media(max-width: 991px)
+{
+  .game-section{
+    text-align: center;
+  }
+}
+.game-panel {
+  padding: 16px;
+  border-radius: 4px;
+
+  a {
+    color: $font-color;
+  }
+  img {
+    height: 155px;
+    width: 250px;
+    object-fit: cover;
+    display: block;
+    margin: 8px auto;
+  }
+  &:hover {
+    background: $lighter-grey;
+    transform: scale(1.025);
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
+.error{
+  font-size: 14px;
+  text-align: center;
+  padding-top: 8px;
+}
+
+/* Scrollbar styling*/
+::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #fff;
+}
+
+::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #fff;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: $main-color;
+}
+/* End scrollbar styling */
+
+/* 404 page styling */
+.msg-404{
+  font-size: 18px;
+  font-weight: bold;
+  margin: 16px auto;
+}
+/* End 404 page styling */
