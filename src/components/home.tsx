@@ -39,7 +39,7 @@ const Home: React.FC<HomeProps> = ({games}) =>
 
     return (
         <React.Fragment>
-          <Header />
+          <Header user={null} />
           <h1 className="col-12 title">Games</h1>
           <div className="container main-container">
             <div className="row game-section">
