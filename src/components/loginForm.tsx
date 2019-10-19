@@ -3,9 +3,10 @@ import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
 // import { connect } from "react-redux";
 // import { userLogin } from "../redux/actions";
 type LoginFormProps = {
-
+    success: any,
+    toggle: any
 }
-const LoginForm : React.FC<LoginFormProps> = () => {
+const LoginForm : React.FC<LoginFormProps> = ({success, toggle}) => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,12 +16,6 @@ const LoginForm : React.FC<LoginFormProps> = () => {
   const validateForm = () => {
     return email.length > 0 && password.length > 0;
   }
-
-  const handleChange = (event: any) => {
-    // this.setState({
-    //   [event.target.id]: event.target.value
-    // });
-  };
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
@@ -44,12 +39,12 @@ const LoginForm : React.FC<LoginFormProps> = () => {
             setError(false);
           }, 1000);
         } else {
-          //login user - save info to redux store
-        //   this.props.userLogin(data.user);
-        //   //hide login form
-        //   this.props.toggle();
-        //   //show 'logging in' pop up
-        //   this.props.success();
+         // login user - save info to redux store
+        //  userLogin(data.user);
+          //hide login form
+            toggle();
+          //show 'logging in' pop up
+          success();
         }
       })
       .catch(error =>
@@ -60,7 +55,7 @@ const LoginForm : React.FC<LoginFormProps> = () => {
   const overlayClick = (e: any) => {
     e.stopPropagation();
     if (e.target.className === "overlay") {
-    //   this.props.toggle();
+        toggle();
     }
   };
 
@@ -78,14 +73,14 @@ const LoginForm : React.FC<LoginFormProps> = () => {
               autoFocus
               type="email"
               value={email}
-              onChange={handleChange}
+              onChange={(e: any) => setEmail(e.target.value)}
             />
           </FormGroup>
           <FormGroup controlId="password">
             <FormLabel>Password</FormLabel>
             <FormControl
               value={password}
-              onChange={handleChange}
+              onChange={(e: any) => setPassword(e.target.value)}
               type="password"
             />
           </FormGroup>

@@ -5,7 +5,7 @@ import SignUpForm from "./signUpForm";
 import { Link } from "react-router-dom";
 
 type HeaderProps = {
-  user: Object,
+  user: any
 }
 const Header: React.FC<HeaderProps> = ({ user }) => {
 
