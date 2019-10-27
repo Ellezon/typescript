@@ -9,7 +9,7 @@ export const DELETE_GAME = 'DELETE_GAME';
 export const ADD_GAME = "ADD_GAME";
 
 export interface StoreState {
-    user: any | null,
+    user: any,
     games: Game[]
 }
 
@@ -27,7 +27,6 @@ interface loginUserAction {
 
 interface logoutUserAction {
     type: typeof LOGOUT_USER
-    payload: {user: any}
 }
 
 

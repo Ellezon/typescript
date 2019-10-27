@@ -15,10 +15,9 @@ export function userLogin(user: any): actionTypes {
     }
 }
 
-export function userLogout(user: any): actionTypes {
+export function userLogout(): actionTypes {
     return {
-        type: LOGOUT_USER,
-        payload: { user }
+        type: LOGOUT_USER
     }
 }
 

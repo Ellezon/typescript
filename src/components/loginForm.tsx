@@ -1,12 +1,23 @@
 import React, {useState} from "react";
 import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
-// import { connect } from "react-redux";
-// import { userLogin } from "../redux/actions";
-type LoginFormProps = {
-    success: any,
-    toggle: any
+import { connect } from "react-redux";
+import { userLogin } from "../redux/actions";
+import { Dispatch } from "redux";
+import { actionTypes } from "../redux/types";
+
+
+interface LoginFormProps {
+  success: any,
+  toggle: any
 }
-const LoginForm : React.FC<LoginFormProps> = ({success, toggle}) => {
+
+interface PropsFromDispatch {
+  userLogin: (user: any) => void;
+}
+
+type AllProps = LoginFormProps & PropsFromDispatch;
+
+const LoginForm : React.FC<AllProps> = ({success, toggle, userLogin}) => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -40,7 +51,7 @@ const LoginForm : React.FC<LoginFormProps> = ({success, toggle}) => {
           }, 1000);
         } else {
          // login user - save info to redux store
-        //  userLogin(data.user);
+         userLogin(data.user);
           //hide login form
             toggle();
           //show 'logging in' pop up
@@ -100,12 +111,14 @@ const LoginForm : React.FC<LoginFormProps> = ({success, toggle}) => {
     );
   
 }
-// const mapDispatchToProps = {
-//   userLogin
-// };
+const mapDispatchToProps = (dispatch: Dispatch<actionTypes>) => {
+  return {
+    userLogin: (user: any) => dispatch(userLogin(user))
+  };
+};
 
-// export default connect(
-//   null,
-//   mapDispatchToProps
-// )(LoginForm);
-export default LoginForm;
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(LoginForm);

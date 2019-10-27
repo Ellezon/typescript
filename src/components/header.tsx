@@ -3,11 +3,26 @@ import LoginForm from "./loginForm";
 import Popup from "./popup";
 import SignUpForm from "./signUpForm";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
+import { userLogout } from "../redux/actions";
+import { AppState } from "../redux/index";
+import { actionTypes } from "../redux/types";
 
-type HeaderProps = {
+
+
+interface PropsFromDispatch {
+  userLogout: () => void
+}
+
+interface StateFromDispatch {
   user: any
 }
-const Header: React.FC<HeaderProps> = ({ user }) => {
+
+
+type AllProps =  PropsFromDispatch & StateFromDispatch;
+
+const Header: React.FC<AllProps> = ({user, userLogout}) => {
 
   const [showLoginForm, setLoginForm] = useState(false);
   const [showLogoutForm, setLogoutForm] = useState(false);
@@ -34,8 +49,7 @@ const Header: React.FC<HeaderProps> = ({ user }) => {
     }, 1000);
   }
   function handleLogoutClick() {
-    //login user - save info to redux store
-    //userLogout();
+    userLogout();
     setLogoutForm(!showLogoutForm);
     setTimeout(() => {
       setLogoutForm(!showLogoutForm);
@@ -98,7 +112,24 @@ const Header: React.FC<HeaderProps> = ({ user }) => {
   );
 }
 
-export default Header;
+
+const mapDispatchToProps = (dispatch: Dispatch<actionTypes>) => {
+  return {
+    userLogout: () => dispatch(userLogout())
+  };
+};
+
+const mapStateToProps = (state: AppState) => {
+  return {
+    user: state.user 
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Header);
+
 
 type HeaderButtonProps = {
   classes: string,
@@ -113,5 +144,4 @@ export const HeaderButton: React.FC<HeaderButtonProps> = ({ classes, onClick, te
     </button>
   );
 }
-
 

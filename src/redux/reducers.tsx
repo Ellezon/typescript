@@ -15,7 +15,7 @@ const initialState: StoreState = {
         };
         case LOGOUT_USER:
             return {
-              user: action.payload.user,
+              user: null,
               games: state.games
             };
           case SET_ALL_GAMES:
