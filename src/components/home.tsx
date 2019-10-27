@@ -2,23 +2,19 @@ import React, { useState, useEffect  } from "react";
 import Header from "./header";
 import Footer from "./footer";
 import Game from "./game";
+import { connect } from "react-redux";
+import { setAllGames } from "../redux/actions";
 
-
-type HomeProps = {
-    games: Array<any>;
-};
-
-const Home: React.FC<HomeProps> = ({games}) =>
+const Home: React.FC<HomeProps> = ({setAllGames}) =>
 {
     const [allGames, setGames] = useState<Array<any>>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(false);
    
-    // Similar to componentDidMount and componentDidUpdate:
+    // Similar to componentDidMount and componentDidUpdate
     useEffect(() => {
         setIsLoading(true);
-        if (games) {
-            setGames(games);
+        if (allGames.length >0) {
             setIsLoading(false);
         } 
         else {
@@ -27,6 +23,7 @@ const Home: React.FC<HomeProps> = ({games}) =>
             .then(data => {
               if (data) {
                 setGames(data);
+                setAllGames(allGames);
                 setIsLoading(false);
               }
             })
@@ -46,7 +43,7 @@ const Home: React.FC<HomeProps> = ({games}) =>
                 {isLoading && !error && <span> Loading...</span>}
                 {!isLoading && !error && allGames.length > 0 &&
                 allGames.map((game: { id: number; play_url: string; name: string; logo_url: string }) => {
-                 return <Game game={game}/>
+                 return <Game key={game.id} game={game}/>
                 })}
                 {error && <span> Error! {error}</span>}
             </div>
@@ -55,4 +52,16 @@ const Home: React.FC<HomeProps> = ({games}) =>
         </React.Fragment>
       );
 }
-export default Home;
+
+const mapDispatchToProps = () => ({
+  setAllGames
+});
+
+
+
+type HomeProps =  ReturnType<typeof mapDispatchToProps>;
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Home);
