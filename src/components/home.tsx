@@ -4,8 +4,16 @@ import Footer from "./footer";
 import Game from "./game";
 import { connect } from "react-redux";
 import { setAllGames } from "../redux/actions";
+import { Dispatch } from "redux";
+import { actionTypes } from "../redux/types";
 
-const Home: React.FC<HomeProps> = ({setAllGames}) =>
+interface PropsFromDispatch {
+  setAllGames: (games: Array<any>) => void
+}
+
+type AllProps =  PropsFromDispatch ;
+
+const Home: React.FC<AllProps> = ({setAllGames}) =>
 {
     const [allGames, setGames] = useState<Array<any>>([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -23,7 +31,7 @@ const Home: React.FC<HomeProps> = ({setAllGames}) =>
             .then(data => {
               if (data) {
                 setGames(data);
-                setAllGames(allGames);
+                setAllGames(data);
                 setIsLoading(false);
               }
             })
@@ -36,7 +44,7 @@ const Home: React.FC<HomeProps> = ({setAllGames}) =>
 
     return (
         <React.Fragment>
-          <Header user={null} />
+          <Header/>
           <h1 className="col-12 title">Games</h1>
           <div className="container main-container">
             <div className="row game-section">
@@ -53,13 +61,12 @@ const Home: React.FC<HomeProps> = ({setAllGames}) =>
       );
 }
 
-const mapDispatchToProps = () => ({
-  setAllGames
-});
 
-
-
-type HomeProps =  ReturnType<typeof mapDispatchToProps>;
+const mapDispatchToProps = (dispatch: Dispatch<actionTypes>) => {
+  return {
+    setAllGames: (games: Array<any>) => dispatch(setAllGames(games))
+  };
+};
 
 export default connect(
   null,
