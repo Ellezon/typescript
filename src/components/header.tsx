@@ -37,22 +37,22 @@ const Header: React.FC<AllProps> = ({user, userLogout}) => {
     setSignUpForm(!showSignUpForm);
   };
   function handleSuccessfulLogin() {
-    setloginSuccessful(!loginSuccessful);
+    setloginSuccessful(true);
     setTimeout(() => {
-      setloginSuccessful(!loginSuccessful);
+      setloginSuccessful(false);
     }, 1000);
   };
   function handleSuccessfulsignup() {
-    setsignUpSuccessful(!signUpSuccessful);
+    setsignUpSuccessful(true);
     setTimeout(() => {
-      setsignUpSuccessful(!signUpSuccessful);
+      setsignUpSuccessful(false);
     }, 1000);
   }
   function handleLogoutClick() {
     userLogout();
-    setLogoutForm(!showLogoutForm);
+    setLogoutForm(true);
     setTimeout(() => {
-      setLogoutForm(!showLogoutForm);
+      setLogoutForm(false);
     }, 1000);
   };
 
